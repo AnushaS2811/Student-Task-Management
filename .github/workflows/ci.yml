@@ -1,0 +1,34 @@
+
+name: Student Task Management CI
+
+# Run workflow whenever code is pushed or a pull request is created
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Get the project code
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Step 2: Install Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      # Step 3: Run automated tests
+      - name: Run tests
+        run: npm test
+
+      # Step 4: Build the application
+      - name: Build application
+        run: npm run build
