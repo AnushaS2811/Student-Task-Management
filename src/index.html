@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Task Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <h1>Student Task Manager</h1>
+      <p class="subtitle">Organize your studies, one task at a time!</p>
+    </header>
+
+    <!-- Summary cards -->
+    <section class="summary" aria-label="Task summary">
+      <div class="card card-total">
+        <span class="card-label">Total Tasks</span>
+        <span class="card-number" id="total-count">0</span>
+      </div>
+      <div class="card card-pending">
+        <span class="card-label">Pending Tasks</span>
+        <span class="card-number" id="pending-count">0</span>
+      </div>
+      <div class="card card-completed">
+        <span class="card-label">Completed Tasks</span>
+        <span class="card-number" id="completed-count">0</span>
+      </div>
+    </section>
+
+    <!-- Add task area -->
+    <section class="add-task">
+      <div class="add-task-row">
+        <input
+          type="text"
+          id="task-input"
+          placeholder="Enter a new task (e.g., Finish DevOps report)"
+          maxlength="100"
+          autocomplete="off"
+        />
+        <button id="add-button" class="btn btn-primary">Add Task</button>
+      </div>
+      <p id="error-message" class="error-message" role="alert"></p>
+    </section>
+
+    <!-- Task list -->
+    <section class="tasks-section">
+      <h2>My Tasks</h2>
+      <p id="empty-message" class="empty-message">
+        🎉 No tasks yet! Add your first task above to get started.
+      </p>
+      <ul id="task-list" class="task-list"></ul>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

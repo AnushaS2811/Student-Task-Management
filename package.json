@@ -1,0 +1,12 @@
+
+{
+  "name": "student-task-management",
+  "version": "1.0.0",
+  "description": "Student Task Management System - DevOps Mini Project",
+  "main": "src/app.js",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node --test"
+  },
+  "license": "ISC"
+}

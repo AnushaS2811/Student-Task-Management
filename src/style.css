@@ -1,0 +1,245 @@
+/* ---------- Colour theme (blue, white, light grey) ---------- */
+:root {
+  --blue-dark: #1d4ed8;
+  --blue: #2563eb;
+  --blue-light: #dbeafe;
+  --white: #ffffff;
+  --grey-bg: #f1f5f9;
+  --grey-border: #e2e8f0;
+  --grey-text: #64748b;
+  --text-dark: #1e293b;
+  --green: #16a34a;
+  --green-light: #dcfce7;
+  --red: #dc2626;
+  --shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+/* ---------- Basic reset ---------- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  background-color: var(--grey-bg);
+  color: var(--text-dark);
+  min-height: 100vh;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+/* ---------- Header ---------- */
+.header {
+  text-align: center;
+  background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  color: var(--white);
+  padding: 32px 16px;
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+.header h1 {
+  font-size: 2rem;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* ---------- Summary cards ---------- */
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 20px 12px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  border-top: 4px solid var(--blue);
+}
+
+.card-pending { border-top-color: #f59e0b; }
+.card-completed { border-top-color: var(--green); }
+
+.card-label {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--grey-text);
+  margin-bottom: 8px;
+}
+
+.card-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--blue-dark);
+}
+
+/* ---------- Add task area ---------- */
+.add-task {
+  background: var(--white);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+}
+
+.add-task-row {
+  display: flex;
+  gap: 12px;
+}
+
+#task-input {
+  flex: 1;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 2px solid var(--grey-border);
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#task-input:focus {
+  border-color: var(--blue);
+}
+
+.error-message {
+  color: var(--red);
+  font-size: 0.9rem;
+  margin-top: 8px;
+  min-height: 1.2em; /* keeps layout stable when message is empty */
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.btn:hover { transform: translateY(-1px); }
+
+.btn-primary {
+  background-color: var(--blue);
+  color: var(--white);
+}
+.btn-primary:hover { background-color: var(--blue-dark); }
+
+.btn-complete {
+  background-color: var(--green-light);
+  color: var(--green);
+}
+.btn-complete:hover { background-color: #bbf7d0; }
+
+.btn-undo {
+  background-color: var(--blue-light);
+  color: var(--blue-dark);
+}
+.btn-undo:hover { background-color: #bfdbfe; }
+
+.btn-delete {
+  background-color: #fee2e2;
+  color: var(--red);
+}
+.btn-delete:hover { background-color: #fecaca; }
+
+/* ---------- Task list ---------- */
+.tasks-section {
+  background: var(--white);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+}
+
+.tasks-section h2 {
+  margin-bottom: 16px;
+  color: var(--blue-dark);
+}
+
+.task-list {
+  list-style: none;
+}
+
+.task-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  background: var(--grey-bg);
+  border-left: 5px solid var(--blue); /* pending = blue */
+}
+
+/* Completed tasks look different: green border, faded, strike-through */
+.task-item.completed {
+  border-left-color: var(--green);
+  background: #f0fdf4;
+  opacity: 0.85;
+}
+
+.task-title {
+  flex: 1;
+  word-break: break-word;
+  font-size: 1rem;
+}
+
+.task-item.completed .task-title {
+  text-decoration: line-through;
+  color: var(--grey-text);
+}
+
+.task-buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.empty-message {
+  text-align: center;
+  color: var(--grey-text);
+  padding: 24px 0;
+}
+
+/* ---------- Mobile layout ---------- */
+@media (max-width: 600px) {
+  .header h1 { font-size: 1.5rem; }
+
+  .summary {
+    grid-template-columns: 1fr;
+  }
+
+  .add-task-row {
+    flex-direction: column;
+  }
+
+  .task-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .task-buttons {
+    width: 100%;
+  }
+
+  .task-buttons .btn {
+    flex: 1;
+  }
+}
