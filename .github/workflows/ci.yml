@@ -1,7 +1,6 @@
 
-name: Student Task Management CI
+name: Student Task Management CI/CD
 
-# Run workflow whenever code is pushed or a pull request is created
 on:
   push:
     branches:
@@ -10,25 +9,48 @@ on:
     branches:
       - main
 
+permissions:
+  contents: read
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Get the project code
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # Step 2: Install Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # Step 3: Run automated tests
       - name: Run tests
         run: npm test
 
-      # Step 4: Build the application
       - name: Build application
         run: npm run build
+
+      - name: Upload website artifact
+        if: github.event_name == 'push'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    if: github.event_name == 'push'
+    needs: build-and-test
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
