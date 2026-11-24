@@ -135,4 +135,5 @@ Git, GitHub, Node.js and GitHub Actions are used to implement version control, b
 
 The project provides practical experience in developing and deploying an application using a basic CI/CD pipeline.
 
-Deployment verification completed for the Student Task Management System.
+Deployment verification completed for the Student Task Management System.git 
+Completed.
